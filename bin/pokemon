@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/pokemon'
+
+Pokemon::CLI.new.call
