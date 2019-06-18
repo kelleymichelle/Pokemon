@@ -16,7 +16,7 @@ class Scraper
       new << Pokemon::Pokemon_list.new(name, image, type)
     # binding.pry
     end
-    new
+    return " :-) "
   end  
 
 end  

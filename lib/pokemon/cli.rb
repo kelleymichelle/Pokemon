@@ -1,9 +1,10 @@
 require 'catpix'
 require 'pry'
+require 'mini_magick'
 
 class Pokemon::CLI
 
-  def play
+  def pry
     binding.pry
   end
 
@@ -58,10 +59,19 @@ class Pokemon::CLI
   def starter_poke
     # arr = ["charmander", "bulbasaur", "squirtle"]
     arr = Pokemon::Pokemon_list.all.values_at(0, 3, 6)
-    binding.pry
+    # binding.pry
     sleep 2
     arr.each {|mon| puts mon.name }
+  end
 
+  def gimme_picture_from_pokemon(poke)
+    image = MiniMagick::Image.open(poke.img_link)
+    Catpix::print_image image.path
+  end
+  
+  def gimme_picture_from_link(link)
+    image = MiniMagick::Image.open('link')
+    Catpix::print_image image.path
   end
   
   def scrape

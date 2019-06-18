@@ -11,6 +11,10 @@ class Pokemon::Pokemon_list
     @img_link = img_link
     @type = type
     @@all << self
+  end
+  
+  def self.from_scrapey
+    Scraper.scrapeyscrape
   end  
 
   def self.all
