@@ -6,3 +6,4 @@ require_relative "./pokemon/version"
 # end
 
 require_relative './pokemon/cli'
+require_relative './pokemon/pokemon_list'

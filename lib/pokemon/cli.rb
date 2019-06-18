@@ -1,10 +1,12 @@
 require 'catpix'
+
 class Pokemon::CLI
 
   def call
     welcome
     name
-    poke_list
+    wild_poke
+    starter_poke
   end
 
   def welcome
@@ -34,8 +36,8 @@ class Pokemon::CLI
     sleep 1
   end
   
-  def poke_list
-    arr = ["charmander", "bulbasaur", "pikachu"]
+  def wild_poke
+    arr = ["pokemon 1", "pokemon 2", "pokemon 3"]
 
     puts "... ... ..."
     sleep 2
@@ -44,6 +46,16 @@ class Pokemon::CLI
     puts "A wild pokemon is attacking!"
     sleep 2
     puts arr.sample
+    sleep 2
+    puts "Quick! Go into my bag and choose a Pokemon!"
+  end
+  
+  def starter_poke
+    # arr = ["charmander", "bulbasaur", "squirtle"]
+    arr = Pokemon::Pokemon_list.all
+    sleep 2
+    arr.each {|mon| puts mon }
+
   end  
 
   
