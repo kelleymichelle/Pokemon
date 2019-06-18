@@ -3,3 +3,6 @@
 require './lib/pokemon'
 
 Pokemon::CLI.new.call
+
+require "irb"
+IRB.start(__FILE__)

@@ -1,9 +1,24 @@
-class Pokemon::Pokemon_list
+require 'pry'
+require 'catpix'
 
-  @@all = ["charmander", "bulbasaur", "squirtle"]
+class Pokemon::Pokemon_list
+  attr_accessor :name, :img_link, :type
+
+  @@all = []
+
+  def initialize(name, img_link, type)
+    @name = name
+    @img_link = img_link
+    @type = type
+    @@all << self
+  end  
 
   def self.all
     @@all
-  end  
+  end
+  
+  def self.find_by_name(name)
+  end
+  
 
 end  

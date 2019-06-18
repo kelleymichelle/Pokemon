@@ -1,6 +1,11 @@
 require 'catpix'
+require 'pry'
 
 class Pokemon::CLI
+
+  def play
+    binding.pry
+  end
 
   def call
     welcome
@@ -37,7 +42,7 @@ class Pokemon::CLI
   end
   
   def wild_poke
-    arr = ["pokemon 1", "pokemon 2", "pokemon 3"]
+    arr = Pokemon::Pokemon_list.all
 
     puts "... ... ..."
     sleep 2
@@ -52,10 +57,15 @@ class Pokemon::CLI
   
   def starter_poke
     # arr = ["charmander", "bulbasaur", "squirtle"]
-    arr = Pokemon::Pokemon_list.all
+    arr = Pokemon::Pokemon_list.all.values_at(0, 3, 6)
+    binding.pry
     sleep 2
-    arr.each {|mon| puts mon }
+    arr.each {|mon| puts mon.name }
 
+  end
+  
+  def scrape
+    Scraper.scrapeyscrape
   end  
 
   
