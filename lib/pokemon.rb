@@ -8,3 +8,4 @@ require_relative "./pokemon/version"
 require_relative './pokemon/cli'
 require_relative './pokemon/pokemon_list'
 require_relative './pokemon/scraper'
+require_relative './pokemon/trainer'
