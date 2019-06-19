@@ -9,6 +9,7 @@ class Pokemon::CLI
   end
 
   def call
+    scrape
     welcome
     name
     wild_poke
@@ -16,13 +17,14 @@ class Pokemon::CLI
   end
 
   def welcome
-    # Catpix::print_image "/Users/kelleychaplain/desktop/ProfOak.gif" 
-  
+    
     puts "Hello There"
     puts "Welcome To The World Of Pokemon"
     sleep 1
     puts "My name is OAK"
     puts "People often refer to me as the Pokemon PROF"
+    sleep 1
+    gimme_picture_from_link('https://www.pojo.com/cartoon/Oak.gif')
     sleep 1
     puts "This World is inhabited by creatures known as Pokemon"
     puts "For Some People Pokemon are Pets"
@@ -66,11 +68,13 @@ class Pokemon::CLI
 
   def gimme_picture_from_pokemon(poke)
     image = MiniMagick::Image.open(poke.img_link)
+    image.resize '100x100'
     Catpix::print_image image.path
   end
   
   def gimme_picture_from_link(link)
     image = MiniMagick::Image.open('link')
+    image.resize '100x100'
     Catpix::print_image image.path
   end
   
