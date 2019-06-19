@@ -5,7 +5,7 @@ class Pokemon::Trainer
 
   def initialize(name)
     @name = name
-    @pokedex = []
+    @pokedex = nil
     @@all << self
   end
 

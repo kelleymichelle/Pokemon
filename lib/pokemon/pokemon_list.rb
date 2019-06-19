@@ -22,6 +22,7 @@ class Pokemon::Pokemon_list
   end
   
   def self.find_by_name(name)
+    self.all.select {|mon| mon.name.downcase == name.downcase }
   end
   
 

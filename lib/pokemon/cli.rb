@@ -3,6 +3,7 @@ require 'pry'
 require 'mini_magick'
 
 class Pokemon::CLI
+  attr_accessor :trainer
 
   def pry
     binding.pry
@@ -14,6 +15,7 @@ class Pokemon::CLI
     name
     wild_poke
     starter_poke
+    choose_you
   end
 
   def welcome
@@ -39,7 +41,7 @@ class Pokemon::CLI
   def name
     puts "But tell me about yourself, What is your name?"
     reply = gets.chomp
-    Pokemon::Trainer.new(reply)
+    @trainer = Pokemon::Trainer.new(reply)
     # binding.pry
     puts "#{reply}, Your very own Pokemon Legend is about to begin! A world full of dreams and adventures and Pokemon."
     sleep 1
@@ -68,7 +70,17 @@ class Pokemon::CLI
     # binding.pry
     sleep 2
     arr.each {|mon| puts mon.name }
+    puts "Choose a Pokemon!"
+    reply = gets.chomp
+    @trainer.pokedex = Pokemon::Pokemon_list.find_by_name(reply)
+    # binding.pry
   end
+
+  def choose_you
+    puts "I choose you - #{@trainer.pokedex[0].name}!!!"
+    sleep 2
+    gimme_picture_from_pokemon(@trainer.pokedex[0])
+  end  
 
   def gimme_picture_from_pokemon(poke)
     image = MiniMagick::Image.open(poke.img_link)
