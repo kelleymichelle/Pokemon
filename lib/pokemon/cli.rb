@@ -74,16 +74,20 @@ class Pokemon::CLI
     # binding.pry
     sleep 2
     arr.each {|mon| puts " -> #{mon.name}" }
-    puts "Type its name to choose a Pokemon!"
+    puts "\nType its name to choose a Pokemon!\n"
     reply = gets.chomp
     @trainer.pokedex = Pokemon::Pokemon_list.find_by_name(reply)
     # binding.pry
   end
 
   def choose_you
-    puts "I choose you - #{@trainer.pokedex[0].name}!!!"
+    puts "\nI choose you - #{@trainer.pokedex[0].name}!!!\n"
     sleep 2
     gimme_picture_from_pokemon(@trainer.pokedex[0])
+    sleep 2
+    puts "\nBoom... Pow... Bang...\n"
+    sleep 2
+    puts "\nThe wild pokemon fainted!\n"
   end  
 
   def gimme_picture_from_pokemon(poke)
@@ -97,6 +101,15 @@ class Pokemon::CLI
     image.resize '50x50'
     Catpix::print_image image.path
   end
+
+  def menu
+    puts "\nPROF - Phew! That was a close one! Go ahead and keep that #{@trainer.pokedex[0].name}.\n" 
+    sleep 2
+    puts "\nAnd as my way of thanks, here's a Pokedex. I've loaded in information on every pokemon!\n"
+    sleep 2
+    puts "\nWith this Pokedex, you can find pokemon by their name or type. You can view a picture or get more information.\n"
+    sleep 2
+  end  
   
   def scrape
     Scraper.scrapeyscrape
