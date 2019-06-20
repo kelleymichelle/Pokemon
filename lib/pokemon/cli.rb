@@ -9,7 +9,7 @@ class Pokemon::CLI
     binding.pry
   end
 
-  def call
+  def run
     scrape
     welcome
     name

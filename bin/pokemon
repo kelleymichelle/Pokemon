@@ -2,7 +2,7 @@
 
 require './lib/pokemon'
 
-Pokemon::CLI.new.call
+Pokemon::CLI.new.run
 
 require "irb"
 IRB.start(__FILE__)
