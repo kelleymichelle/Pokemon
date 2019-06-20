@@ -11,3 +11,7 @@ to do:
 
 *figure out how to resize pictures
 
+* cheat code of choosing any starter pokemon
+* see any pokemon
+* invalid pokemon entry
+* 

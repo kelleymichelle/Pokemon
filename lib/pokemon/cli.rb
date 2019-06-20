@@ -20,48 +20,52 @@ class Pokemon::CLI
 
   def welcome
     
-    puts "Hello There"
-    puts "Welcome To The World Of Pokemon"
+    puts "\n\nHello There\n\n"
+    puts "\n\nWelcome To The World Of Pokemon\n\n"
     sleep 1
-    puts "My name is OAK"
-    puts "People often refer to me as the Pokemon PROF"
+    puts "\nMy name is OAK\n"
     sleep 1
+    puts "\nPeople often refer to me as the Pokemon PROF\n"
     # binding.pry
     gimme_picture_from_link('https://www.pojo.com/cartoon/Oak.gif')
     sleep 1
-    puts "This World is inhabited by creatures known as Pokemon"
-    puts "For Some People Pokemon are Pets"
-    puts "Others use them for battle"
-    puts "As for myself" 
-    puts "I study Pokemon as a profession"
+    puts "\nThis world is inhabited by creatures known as Pokemon\n"
     sleep 1
+    puts "\nFor some people Pokemon are pets\n"
+    sleep 1
+    puts "\nOthers use them for battle\n"
+    sleep 1
+    puts "\nAs for myself\n" 
+    sleep 1
+    puts "\nI study Pokemon as a profession\n"
+    sleep 3
    
   end
   
   def name
-    puts "But tell me about yourself, What is your name?"
+    puts "\nBut tell me about yourself, What is your name?\n"
     reply = gets.chomp
     @trainer = Pokemon::Trainer.new(reply)
     # binding.pry
-    puts "#{reply}, Your very own Pokemon Legend is about to begin! A world full of dreams and adventures and Pokemon."
+    puts "\n#{reply}, Your very own Pokemon Legend is about to begin! A world full of dreams and adventures and Pokemon.\n"
     sleep 1
-    puts "Let's Go!"
-    sleep 1
+    puts "\nLet's Go!\n"
+    sleep 3
   end
   
   def wild_poke
     x = Pokemon::Pokemon_list.all.sample
 
-    puts "... ... ..."
+    puts "\n\n...\n\n"
     sleep 2
-    puts "... ... ..."
+    puts "\n\n...\n\n"
     sleep 2
-    puts "A wild pokemon is attacking!"
+    puts "\nA wild pokemon is attacking!\n"
     sleep 2
     gimme_picture_from_pokemon(x)
-    puts x.name
+    puts "\nIt's a wild #{x.name}!\n"
     sleep 2
-    puts "Quick! Go into my bag and choose a Pokemon!"
+    puts "\nQuick! Go into my bag and choose a Pokemon!\n"
   end
   
   def starter_poke
@@ -69,8 +73,8 @@ class Pokemon::CLI
     arr = Pokemon::Pokemon_list.all.values_at(0, 3, 6)
     # binding.pry
     sleep 2
-    arr.each {|mon| puts mon.name }
-    puts "Choose a Pokemon!"
+    arr.each {|mon| puts " -> #{mon.name}" }
+    puts "Type its name to choose a Pokemon!"
     reply = gets.chomp
     @trainer.pokedex = Pokemon::Pokemon_list.find_by_name(reply)
     # binding.pry
