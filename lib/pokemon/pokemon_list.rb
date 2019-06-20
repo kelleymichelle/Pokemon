@@ -26,9 +26,9 @@ class Pokemon::Pokemon_list
     self.all.select {|mon| mon.name.downcase == name.downcase }
   end
 
-  # def self.find_by_generation(gen)
-  #   self.all.select {|mon| mon.generation == gen}
-  # end  
+  def self.find_by_generation(gen)
+    self.all.select {|mon| mon.generation == gen}
+  end  
   
 
 end  

@@ -14,4 +14,5 @@ to do:
 * cheat code of choosing any starter pokemon
 * see any pokemon
 * invalid pokemon entry
-* 
+
+* get generation scraped appropriately
