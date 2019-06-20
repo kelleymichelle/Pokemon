@@ -10,20 +10,17 @@ class Scraper
     url = 'https://pokemondb.net/pokedex/national'
     doc = Nokogiri::HTML(open(url))
     # binding.pry
-    doc.css('h2').each do |gen|
+    # doc.css('h2').each do |gen|
       doc.css('.infocard').each do |this|
-        generation = gen.text.split(" ")[1]
+        # binding.pry
+        # generation = gen.text.split(" ")[1]
         x = this.css('.img-sprite') 
           image = x.attr('data-src').value
           name = this.css('.ent-name').text
+          more_info = this.css('a')[0].attr('href')
           this.css('small a').each {|onetype| types = onetype.text }
-          
-            new << Pokemon::Pokemon_list.new(name, image, types, generation)
-      binding.pry
-          end
-      end
+            new << Pokemon::Pokemon_list.new(name, image, types, more_info)
     end
-    binding.pry
     return " ^ - ^ "
   end  
 

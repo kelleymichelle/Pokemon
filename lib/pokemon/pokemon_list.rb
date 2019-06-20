@@ -2,15 +2,15 @@ require 'pry'
 require 'catpix'
 
 class Pokemon::Pokemon_list
-  attr_accessor :name, :img_link, :type, :generation
+  attr_accessor :name, :img_link, :type, :more_info
 
   @@all = []
 
-  def initialize(name, img_link, type, generation)
+  def initialize(name, img_link, type, more_info)
     @name = name
     @img_link = img_link
     @type = type
-    @generation = generation
+    @more_info = more_info
     @@all << self
   end
   
