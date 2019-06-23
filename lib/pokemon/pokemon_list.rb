@@ -26,8 +26,22 @@ class Pokemon::Pokemon_list
     self.all.select {|mon| mon.name.downcase == name.downcase }
   end
 
-  def self.find_by_generation(gen)
-    self.all.select {|mon| mon.generation == gen}
+  def self.find_by_type(type_choice)
+    self.all.select {|mon| mon.type.include?(type_choice.capitalize)}
+  end
+  
+  def self.all_types
+    types = []
+    self.all.each do |mon|
+      types << mon.type
+    end
+    types.flatten.sort.uniq
+  end
+  
+  def self.surprise_pokemon
+    egg = self.all.sample
+    puts egg.name
+    Pokemon::CLI.new.gimme_picture_from_pokemon(egg)
   end  
   
 

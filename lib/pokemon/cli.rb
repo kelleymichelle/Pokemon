@@ -16,27 +16,29 @@ class Pokemon::CLI
     wild_poke
     starter_poke
     choose_you
+    prof_script
+    pokedex_menu
   end
 
   def welcome
     
     puts "\n\nHello There\n\n"
     puts "\n\nWelcome To The World Of Pokemon\n\n"
-    sleep 1
+    sleep 2
     puts "\nMy name is OAK\n"
-    sleep 1
+    sleep 2
     puts "\nPeople often refer to me as the Pokemon PROF\n"
     # binding.pry
     gimme_picture_from_link('https://www.pojo.com/cartoon/Oak.gif')
-    sleep 1
+    sleep 2
     puts "\nThis world is inhabited by creatures known as Pokemon\n"
-    sleep 1
+    sleep 2
     puts "\nFor some people Pokemon are pets\n"
-    sleep 1
+    sleep 2
     puts "\nOthers use them for battle\n"
-    sleep 1
+    sleep 2
     puts "\nAs for myself\n" 
-    sleep 1
+    sleep 2
     puts "\nI study Pokemon as a profession\n"
     sleep 3
    
@@ -57,14 +59,14 @@ class Pokemon::CLI
     x = Pokemon::Pokemon_list.all.sample
 
     puts "\n\n...\n\n"
-    sleep 2
+    sleep 3
     puts "\n\n...\n\n"
-    sleep 2
+    sleep 3
     puts "\nA wild pokemon is attacking!\n"
-    sleep 2
+    sleep 3
     gimme_picture_from_pokemon(x)
     puts "\nIt's a wild #{x.name}!\n"
-    sleep 2
+    sleep 3
     puts "\nQuick! Go into my bag and choose a Pokemon!\n"
   end
   
@@ -82,12 +84,13 @@ class Pokemon::CLI
 
   def choose_you
     puts "\nI choose you - #{@trainer.pokedex[0].name}!!!\n"
-    sleep 2
+    sleep 3
     gimme_picture_from_pokemon(@trainer.pokedex[0])
-    sleep 2
+    sleep 3
     puts "\nBoom... Pow... Bang...\n"
-    sleep 2
+    sleep 3
     puts "\nThe wild pokemon fainted!\n"
+    sleep 3
   end  
 
   def gimme_picture_from_pokemon(poke)
@@ -102,15 +105,42 @@ class Pokemon::CLI
     Catpix::print_image image.path
   end
 
-  def menu
+  def prof_script
     puts "\nPROF - Phew! That was a close one! Go ahead and keep that #{@trainer.pokedex[0].name}.\n" 
-    sleep 2
-    puts "\nAnd as my way of thanks, here's a Pokedex. I've loaded in information on every pokemon!\n"
-    sleep 2
-    puts "\nWith this Pokedex, you can find pokemon by their name or type. You can view a picture or get more information.\n"
-    sleep 2
-  end  
+    sleep 3
+    puts "\nAnd as my way of thanks, here's a Pokedex. I've loaded information on every pokemon!\n"
+    sleep 3
+    puts "\nWith this Pokedex, you can find pokemon by their name or type. You can view a picture and get more information.\n"
+    sleep 3
+    puts "\nLet's try it out now!\n"
+    sleep 3
+    puts "\nFiring up Pokedex . . .\n"
+    sleep 4
+  end
   
+  def pokedex_menu
+    puts "\nTo learn more about a certain pokemon, enter name of pokemon\n"
+    puts "\nTo see pokemon of a specific type, enter pokemon type.\n"
+    puts "\nTo see a list of pokemon types, enter 'types'\n"
+    puts "\nTo learn about a random pokemon, enter 'surprise'\n"
+    puts "\nTo exit, enter 'exit'\n"
+    reply = gets.chomp
+    case
+    when reply == "types"
+      reply_types
+      pokedex_menu
+    when reply == "surprise"
+      Pokemon::Pokemon_list.surprise_pokemon
+      pokedex_menu
+    when Pokemon::Pokemon_list.all_types.include?(reply.capitalize)
+      Pokemon::Pokemon_list.find_by_type(reply)    
+    end  
+  end
+
+  def reply_types
+    Pokemon::Pokemon_list.all_types.each {|type| puts type}
+  end  
+
   def scrape
     Scraper.scrapeyscrape
   end  
