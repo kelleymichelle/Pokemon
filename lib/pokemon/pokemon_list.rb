@@ -23,8 +23,24 @@ class Pokemon::Pokemon_list
   end
   
   def self.find_by_name(name)
-    self.all.select {|mon| mon.name.downcase == name.downcase }
+    self.all.select do |mon| 
+      if mon.name.downcase == name.downcase
+        x = mon
+    Pokemon::CLI.new.gimme_picture_from_pokemon(x)
+    puts x.name
+    puts x.type
+      end
+    end  
   end
+
+  def self.all_names
+    names = []
+    self.all.each do |mon|
+      names << mon.name
+    end
+    names.flatten.sort
+  end
+
 
   def self.find_by_type(type_choice)
     self.all.select {|mon| mon.type.include?(type_choice.capitalize)}
