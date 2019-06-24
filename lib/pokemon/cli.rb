@@ -123,7 +123,6 @@ class Pokemon::CLI
     puts "\nTo see pokemon of a specific type, enter pokemon type.\n"
     puts "\nTo see a list of pokemon types, enter 'types'\n"
     puts "\nTo learn about a random pokemon, enter 'surprise'\n"
-    puts "\n To see this menu again, enter 'menu'\n"
     puts "\nTo exit, enter 'exit'\n"
     reply = gets.chomp
     case
@@ -132,12 +131,17 @@ class Pokemon::CLI
       pokedex_menu
     when reply == "surprise"
       Pokemon::Pokemon_list.surprise_pokemon
+      sleep 4
+      pokedex_menu
     when Pokemon::Pokemon_list.all_types.include?(reply.capitalize)
       Pokemon::Pokemon_list.find_by_type(reply)
+      sleep 4
+      pokedex_menu
     when Pokemon::Pokemon_list.all_names.include?(reply.capitalize)
-      Pokemon::Pokemon_list.find_by_name(reply)  
-    when reply == "menu"
-      pokedex_menu    
+      Pokemon::Pokemon_list.find_by_name_cli(reply)
+      sleep 4
+      pokedex_menu  
+       
     end  
   end
 

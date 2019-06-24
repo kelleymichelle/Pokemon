@@ -22,7 +22,7 @@ class Pokemon::Pokemon_list
     @@all
   end
   
-  def self.find_by_name(name)
+  def self.find_by_name_cli(name)
     self.all.select do |mon| 
       if mon.name.downcase == name.downcase
         x = mon
@@ -32,6 +32,10 @@ class Pokemon::Pokemon_list
       end
     end  
   end
+
+  def self.find_by_name(name)
+    self.all.select {|mon| mon.name == name.capitalize}
+  end  
 
   def self.all_names
     names = []
@@ -43,7 +47,10 @@ class Pokemon::Pokemon_list
 
 
   def self.find_by_type(type_choice)
-    self.all.select {|mon| mon.type.include?(type_choice.capitalize)}
+    poke_type = self.all.select {|mon| mon.type.include?(type_choice.capitalize)}
+    poke_type.count puts "There are #{poke_type.count} #{type_choice} pokemon."
+    sleep 2
+    poke_type.each {|poke| puts poke.name}
   end
   
   def self.all_types
