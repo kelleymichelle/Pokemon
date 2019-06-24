@@ -27,8 +27,9 @@ class Pokemon::Pokemon_list
       if mon.name.downcase == name.downcase
         x = mon
     Pokemon::CLI.new.gimme_picture_from_pokemon(x)
-    puts x.name
-    puts x.type
+    puts " -> Name : #{x.name}"
+    puts " -> Type: #{x.type}"
+    puts " -> More Information: #{x.more_info}"
       end
     end  
   end
@@ -50,7 +51,7 @@ class Pokemon::Pokemon_list
     poke_type = self.all.select {|mon| mon.type.include?(type_choice.capitalize)}
     poke_type.count puts "There are #{poke_type.count} #{type_choice} pokemon."
     sleep 2
-    poke_type.each {|poke| puts poke.name}
+    poke_type.sort.each {|poke| puts poke.name}
   end
   
   def self.all_types
