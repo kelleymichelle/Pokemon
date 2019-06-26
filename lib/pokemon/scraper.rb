@@ -11,6 +11,7 @@ class Scraper
     doc = Nokogiri::HTML(open(url))
     # binding.pry
     # doc.css('h2').each do |gen|
+    # if new.count < 151
       doc.css('.infocard').each do |this|
         # binding.pry
         # generation = gen.text.split(" ")[1]
@@ -21,6 +22,8 @@ class Scraper
           more_info = this.css('a')[0].attr('href')
           this.css('small a').each {|onetype| types << onetype.text }
             new << Pokemon::Pokemon_list.new(name, image, types, more_info)
+
+      # end  
     end
     return " ^ - ^ "
   end  

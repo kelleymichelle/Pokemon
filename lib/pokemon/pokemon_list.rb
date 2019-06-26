@@ -50,8 +50,9 @@ class Pokemon::Pokemon_list
   def self.find_by_type(type_choice)
     poke_type = self.all.select {|mon| mon.type.include?(type_choice.capitalize)}
     poke_type.count puts "There are #{poke_type.count} #{type_choice} pokemon."
+    new_arr = poke_type.sort_by {|obj| obj.name}
     sleep 2
-    poke_type.sort.each {|poke| puts poke.name}
+    new_arr.each {|poke| puts "-> #{poke.name}"}
   end
   
   def self.all_types
@@ -64,7 +65,7 @@ class Pokemon::Pokemon_list
   
   def self.surprise_pokemon
     egg = self.all.sample
-    puts egg.name
+    puts "-> #{egg.name}"
     Pokemon::CLI.new.gimme_picture_from_pokemon(egg)
   end  
   

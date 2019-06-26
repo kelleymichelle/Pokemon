@@ -22,8 +22,8 @@ class Pokemon::CLI
 
   def welcome
     
-    puts "\n\nHello There\n\n"
-    puts "\n\nWelcome To The World Of Pokemon\n\n"
+    puts "\n\n\nHello There\n\n\n"
+    puts "\n\n\nWelcome To The World Of Pokemon\n\n\n"
     sleep 2
     puts "\nMy name is OAK\n"
     sleep 2
@@ -119,15 +119,16 @@ class Pokemon::CLI
   end
   
   def pokedex_menu
-    puts "\nTo learn more about a certain pokemon, enter name of pokemon\n"
-    puts "\nTo see pokemon of a specific type, enter pokemon type.\n"
-    puts "\nTo see a list of pokemon types, enter 'types'\n"
-    puts "\nTo learn about a random pokemon, enter 'surprise'\n"
-    puts "\nTo exit, enter 'exit'\n"
+    puts "\n-> To learn more about a certain pokemon, enter name of pokemon\n"
+    puts "\n-> To see pokemon of a specific type, enter pokemon type.\n"
+    puts "\n-> To see a list of pokemon types, enter 'types'\n"
+    puts "\n-> To learn about a random pokemon, enter 'surprise'\n"
+    puts "\n-> To exit, enter 'exit'\n"
     reply = gets.chomp
     case
     when reply == "types"
       reply_types
+      sleep 4
       pokedex_menu
     when reply == "surprise"
       Pokemon::Pokemon_list.surprise_pokemon
@@ -146,7 +147,7 @@ class Pokemon::CLI
   end
 
   def reply_types
-    Pokemon::Pokemon_list.all_types.each {|type| puts type}
+    Pokemon::Pokemon_list.all_types.each {|type| puts "-> #{type}"}
   end  
 
   def scrape
