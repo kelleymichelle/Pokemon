@@ -15,7 +15,8 @@ class Pokemon::CLI
     name
     wild_poke
     starter_poke
-    choose_you
+    pokemon_reply
+    #choose_you
     prof_script
     pokedex_menu
   end
@@ -73,13 +74,19 @@ class Pokemon::CLI
   def starter_poke
     # arr = ["charmander", "bulbasaur", "squirtle"]
     arr = Pokemon::Pokemon_list.all.values_at(0, 3, 6)
-    # binding.pry
     sleep 2
     arr.each {|mon| puts " -> #{mon.name}" }
+  end  
+
+  def pokemon_reply
     puts "\nType its name to choose a Pokemon!\n"
     reply = gets.chomp
-    @trainer.pokedex = Pokemon::Pokemon_list.find_by_name(reply)
-    # binding.pry
+      if Pokemon::Pokemon_list.all_names.include?(reply.capitalize)
+        @trainer.pokedex = Pokemon::Pokemon_list.find_by_name(reply)
+        choose_you
+      else
+        pokemon_reply
+      end 
   end
 
   def choose_you
@@ -141,8 +148,13 @@ class Pokemon::CLI
     when Pokemon::Pokemon_list.all_names.include?(reply.capitalize)
       Pokemon::Pokemon_list.find_by_name_cli(reply)
       sleep 4
-      pokedex_menu  
-       
+      pokedex_menu
+    when reply == "exit"
+      puts "\nGoodbye Pokemon Trainer!\n"
+    else
+      puts "\nInvalid entry\n"
+      sleep 2
+      pokedex_menu      
     end  
   end
 
