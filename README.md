@@ -1,28 +1,36 @@
 # Pokemon
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pokemon`. To experiment with that code, run `bin/console` for an interactive prompt.
+CLI Project - part time - 05319 - Kelley Chaplain
 
-TODO: Delete this and the text above, and describe your gem
+## Description
 
-## Installation
+This program is a CLI replica of Nintendo Game Boy Pokemon Red Version. It imitates beginning gameplay then allows the user to access the PokeDex for information on any Pokemon.
 
-Add this line to your application's Gemfile:
+## Technologies
 
-```ruby
-gem 'pokemon'
-```
+This application utilizes the Ruby language and several gems(listed).
+* Pry Gem
+* Catpix Gem
+* MiniMagick Gem
+* Rmagick Gem
+* Nokogiri Gem
 
-And then execute:
+## Setup and Usage
 
-    $ bundle
+* Clone reposititory from 'https://github.com/kelleymichelle/Pokemon'
+* cd into the repository
+* install gem dependencies
+* Type 'bin/pokemon' to run program
+* Enjoy this command line version of Pokemon!
 
-Or install it yourself as:
+## Sources and Resources Used
 
-    $ gem install pokemon
-
-## Usage
-
-TODO: Write usage instructions here
+* 'https://pokemondb.net/pokedex/national'
+* 'https://github.com/pazdera/catpix'
+* 'http://ruby.bastardsbook.com/chapters/image-manipulation/'
+* 'https://github.com/minimagick/minimagick'
+* 'https://www.rubyguides.com/2018/12/minimagick-gem/'
+* 'https://www.rubydoc.info/github/minimagick/minimagick'
 
 ## Development
 
@@ -32,7 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pokemon.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kelleymichelle/pokemon.
 
 ## License
 
