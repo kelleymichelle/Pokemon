@@ -1,7 +1,9 @@
 require 'pry'
-require 'catpix'
+require_relative './print_pics.rb'
 
 class Pokemon::PokemonList
+  extend PrintPics
+
   attr_accessor :name, :img_link, :type, :more_info
 
   @@all = []
@@ -13,11 +15,7 @@ class Pokemon::PokemonList
     @more_info = more_info
     @@all << self
   end
-  
-  def self.from_scrapey
-    Scraper.scrapeyscrape
-  end  
-
+ 
   def self.all
     @@all
   end
@@ -26,7 +24,7 @@ class Pokemon::PokemonList
     self.all.select do |mon| 
       if mon.name.downcase == name.downcase
         x = mon
-    Pokemon::CLI.new.gimme_picture_from_pokemon(x)
+      gimme_picture_from_pokemon(x)
     puts " -> Name : #{x.name}"
     puts " -> Type: #{x.type}"
     puts " -> More Information: #{x.more_info}"
@@ -65,7 +63,7 @@ class Pokemon::PokemonList
   
   def self.surprise_pokemon
     egg = self.all.sample
-    Pokemon::CLI.new.gimme_picture_from_pokemon(egg)
+    gimme_picture_from_pokemon(egg)
     puts "-> Name : #{egg.name}"
     puts "-> Type : #{egg.type}"
     puts "-> More Information : #{egg.more_info}"

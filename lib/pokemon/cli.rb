@@ -1,13 +1,10 @@
-require 'catpix'
 require 'pry'
-require 'mini_magick'
+require_relative './print_pics.rb'
 
 class Pokemon::CLI
-  attr_accessor :trainer
+  include PrintPics
 
-  def pry
-    binding.pry
-  end
+  attr_accessor :trainer
 
   def run
     scrape
@@ -16,7 +13,6 @@ class Pokemon::CLI
     wild_poke
     starter_poke
     pokemon_reply
-    #choose_you
     prof_script
     pokedex_menu
   end
@@ -99,18 +95,6 @@ class Pokemon::CLI
     puts "\nThe wild pokemon fainted!\n"
     sleep 3
   end  
-
-  def gimme_picture_from_pokemon(poke)
-    image = MiniMagick::Image.open(poke.img_link)
-    image.resize '50x50'
-    Catpix::print_image image.path
-  end
-  
-  def gimme_picture_from_link(linky)
-    image = MiniMagick::Image.open(linky)
-    image.resize '50x50'
-    Catpix::print_image image.path
-  end
 
   def prof_script
     puts "\nPROF - Phew! That was a close one! Go ahead and keep that #{@trainer.pokedex[0].name}.\n" 
