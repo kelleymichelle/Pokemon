@@ -57,7 +57,7 @@ class Pokemon::CLI
   end
   
   def wild_poke
-    x = Pokemon::Pokemon_list.all.sample
+    x = Pokemon::PokemonList.all.sample
 
     puts "\n\n...\n\n"
     sleep 3
@@ -73,7 +73,7 @@ class Pokemon::CLI
   
   def starter_poke
     # arr = ["charmander", "bulbasaur", "squirtle"]
-    arr = Pokemon::Pokemon_list.all.values_at(0, 3, 6)
+    arr = Pokemon::PokemonList.all.values_at(0, 3, 6)
     sleep 2
     arr.each {|mon| puts " -> #{mon.name}" }
   end  
@@ -81,8 +81,8 @@ class Pokemon::CLI
   def pokemon_reply
     puts "\nType its name to choose a Pokemon!\n"
     reply = gets.chomp
-      if Pokemon::Pokemon_list.all_names.include?(reply.capitalize)
-        @trainer.pokedex = Pokemon::Pokemon_list.find_by_name(reply)
+      if Pokemon::PokemonList.all_names.include?(reply.capitalize)
+        @trainer.pokedex = Pokemon::PokemonList.find_by_name(reply)
         choose_you
       else
         pokemon_reply
@@ -138,15 +138,15 @@ class Pokemon::CLI
       sleep 4
       pokedex_menu
     when reply == "surprise"
-      Pokemon::Pokemon_list.surprise_pokemon
+      Pokemon::PokemonList.surprise_pokemon
       sleep 4
       pokedex_menu
-    when Pokemon::Pokemon_list.all_types.include?(reply.capitalize)
-      Pokemon::Pokemon_list.find_by_type(reply)
+    when Pokemon::PokemonList.all_types.include?(reply.capitalize)
+      Pokemon::PokemonList.find_by_type(reply)
       sleep 4
       pokedex_menu
-    when Pokemon::Pokemon_list.all_names.include?(reply.capitalize)
-      Pokemon::Pokemon_list.find_by_name_cli(reply)
+    when Pokemon::PokemonList.all_names.include?(reply.capitalize)
+      Pokemon::PokemonList.find_by_name_cli(reply)
       sleep 4
       pokedex_menu
     when reply == "exit"
@@ -159,7 +159,7 @@ class Pokemon::CLI
   end
 
   def reply_types
-    Pokemon::Pokemon_list.all_types.each {|type| puts "-> #{type}"}
+    Pokemon::PokemonList.all_types.each {|type| puts "-> #{type}"}
   end  
 
   def scrape

@@ -18,7 +18,7 @@ class Scraper
           name = this.css('.ent-name').text
           more_info = org_url.concat(this.css('a')[0].attr('href'))
           this.css('small a').each {|onetype| types << onetype.text }
-            new << Pokemon::Pokemon_list.new(name, image, types, more_info)
+            new << Pokemon::PokemonList.new(name, image, types, more_info)
       
     end
     return " ^ - ^ "

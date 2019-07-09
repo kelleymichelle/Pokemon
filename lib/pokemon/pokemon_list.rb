@@ -1,7 +1,7 @@
 require 'pry'
 require 'catpix'
 
-class Pokemon::Pokemon_list
+class Pokemon::PokemonList
   attr_accessor :name, :img_link, :type, :more_info
 
   @@all = []
@@ -65,8 +65,10 @@ class Pokemon::Pokemon_list
   
   def self.surprise_pokemon
     egg = self.all.sample
-    puts "-> #{egg.name}"
     Pokemon::CLI.new.gimme_picture_from_pokemon(egg)
+    puts "-> Name : #{egg.name}"
+    puts "-> Type : #{egg.type}"
+    puts "-> More Information : #{egg.more_info}"
   end  
   
 
