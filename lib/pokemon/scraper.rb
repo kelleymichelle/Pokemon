@@ -5,7 +5,6 @@ require 'nokogiri'
 class Scraper
 
   def self.scrapeyscrape
-    new = []
     url = 'https://pokemondb.net/pokedex/national'
     doc = Nokogiri::HTML(open(url))
    
@@ -18,7 +17,7 @@ class Scraper
           name = this.css('.ent-name').text
           more_info = org_url.concat(this.css('a')[0].attr('href'))
           this.css('small a').each {|onetype| types << onetype.text }
-            new << Pokemon::PokemonList.new(name, image, types, more_info)
+            Pokemon::PokemonList.new(name, image, types, more_info)
       
     end
     return " ^ - ^ "
