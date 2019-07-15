@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/pokemon'
+require_relative '../lib/pokemon'
 
 Pokemon::CLI.new.run
 

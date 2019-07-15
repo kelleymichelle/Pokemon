@@ -121,15 +121,16 @@ class Pokemon::CLI
       sleep 4
       pokedex_menu
     when reply == "surprise"
-      Pokemon::PokemonList.surprise_pokemon
+      surprise_pokemon
       sleep 4
       pokedex_menu
     when Pokemon::PokemonList.all_types.include?(reply.capitalize)
-      Pokemon::PokemonList.find_by_type(reply)
+      find_by_type(reply)
       sleep 4
       pokedex_menu
     when Pokemon::PokemonList.all_names.include?(reply.capitalize)
-      Pokemon::PokemonList.find_by_name_cli(reply)
+      # found_pokemon = Pokemon::PokemonList.find_by_name(reply)
+      # turning_out_pokemon(found_pokemon)
       sleep 4
       pokedex_menu
     when reply == "exit"
@@ -141,9 +142,34 @@ class Pokemon::CLI
     end  
   end
 
+  def surprise_pokemon
+    egg = Pokemon::PokemonList.all.sample
+    gimme_picture_from_pokemon(egg)
+    puts "-> Name : #{egg.name}"
+    puts "-> Type : #{egg.type}"
+    puts "-> More Information : #{egg.more_info}"
+  end  
+
+  # def turning_out_pokemon(x)
+  #   Pokemon::PokemonList.all.select {|mon| mon.name.downcase == name.downcase}
+  #         pocket_monster = mon
+  #       gimme_picture_from_pokemon(pocket_monster)
+  #     puts " -> Name : #{pocket_monster.name}"
+  #     puts " -> Type: #{pocket_monster.type}"
+  #     puts " -> More Information: #{pocket_monster.more_info}"
+  # end  
+
   def reply_types
     Pokemon::PokemonList.all_types.each {|type| puts "-> #{type}"}
-  end  
+  end
+  
+  def find_by_type(type_choice)
+    poke_type = Pokemon::PokemonList.all.select {|mon| mon.type.include?(type_choice.capitalize)}
+    poke_type.count puts "There are #{poke_type.count} #{type_choice} pokemon."
+    new_arr = poke_type.sort_by {|obj| obj.name}
+    sleep 2
+    new_arr.each {|poke| puts "-> #{poke.name}"}
+  end
 
   def scrape
     Scraper.scrapeyscrape

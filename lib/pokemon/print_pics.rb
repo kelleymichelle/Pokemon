@@ -5,6 +5,7 @@ module PrintPics
 
   def gimme_picture_from_pokemon(poke)
     image = MiniMagick::Image.open(poke.img_link)
+    # binding.pry
     image.resize '50x50'
     Catpix::print_image image.path
   end

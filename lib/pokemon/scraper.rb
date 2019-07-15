@@ -4,18 +4,18 @@ require 'nokogiri'
 
 class Scraper
 
+  URL = 'https://pokemondb.net/pokedex/national'
+
   def self.scrapeyscrape
-    url = 'https://pokemondb.net/pokedex/national'
-    doc = Nokogiri::HTML(open(url))
-   
+    doc = Nokogiri::HTML(open(URL))
       doc.css('.infocard').each do |this|
-       
+
+        url = 'https://pokemondb.net/pokedex/national'
         types = []
-        x = this.css('.img-sprite') 
-          org_url = 'https://pokemondb.net/pokedex/national'
-          image = x.attr('data-src').value
+        picture = this.css('.img-sprite') 
+          image = picture.attr('data-src').value
           name = this.css('.ent-name').text
-          more_info = org_url.concat(this.css('a')[0].attr('href'))
+          more_info = url.concat(this.css('a')[0].attr('href'))
           this.css('small a').each {|onetype| types << onetype.text }
             Pokemon::PokemonList.new(name, image, types, more_info)
     end
