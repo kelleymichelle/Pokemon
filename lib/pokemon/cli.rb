@@ -25,7 +25,6 @@ class Pokemon::CLI
     puts "\nMy name is OAK\n"
     sleep 2
     puts "\nPeople often refer to me as the Pokemon PROF\n"
-    # binding.pry
     gimme_picture_from_link('https://www.pojo.com/cartoon/Oak.gif')
     sleep 2
     puts "\nThis world is inhabited by creatures known as Pokemon\n"
