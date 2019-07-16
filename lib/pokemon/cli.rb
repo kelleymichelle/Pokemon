@@ -9,7 +9,7 @@ class Pokemon::CLI
   def run
     scrape
     welcome
-    name
+    trainer_name
     wild_poke
     starter_poke
     pokemon_reply
@@ -37,14 +37,12 @@ class Pokemon::CLI
     sleep 2
     puts "\nI study Pokemon as a profession\n"
     sleep 3
-   
   end
   
-  def name
+  def trainer_name
     puts "\nBut tell me about yourself, What is your name?\n"
     reply = gets.chomp
     @trainer = Pokemon::Trainer.new(reply)
-    # binding.pry
     puts "\n#{reply}, Your very own Pokemon Legend is about to begin! A world full of dreams and adventures and Pokemon.\n"
     sleep 1
     puts "\nLet's Go!\n"
@@ -52,7 +50,7 @@ class Pokemon::CLI
   end
   
   def wild_poke
-    x = Pokemon::PokemonList.all.sample
+    wild_pokemon = Pokemon::PokemonList.all.sample
 
     puts "\n\n...\n\n"
     sleep 3
@@ -60,8 +58,8 @@ class Pokemon::CLI
     sleep 3
     puts "\nA wild pokemon is attacking!\n"
     sleep 3
-    gimme_picture_from_pokemon(x)
-    puts "\nIt's a wild #{x.name}!\n"
+    gimme_picture_from_pokemon(wild_pokemon)
+    puts "\nIt's a wild #{wild_pokemon.name}!\n"
     sleep 3
     puts "\nQuick! Go into my bag and choose a Pokemon!\n"
   end
@@ -129,8 +127,7 @@ class Pokemon::CLI
       sleep 4
       pokedex_menu
     when Pokemon::PokemonList.all_names.include?(reply.capitalize)
-      # found_pokemon = Pokemon::PokemonList.find_by_name(reply)
-      # turning_out_pokemon(found_pokemon)
+      turning_out_pokemon(reply)
       sleep 4
       pokedex_menu
     when reply == "exit"
@@ -150,14 +147,13 @@ class Pokemon::CLI
     puts "-> More Information : #{egg.more_info}"
   end  
 
-  # def turning_out_pokemon(x)
-  #   Pokemon::PokemonList.all.select {|mon| mon.name.downcase == name.downcase}
-  #         pocket_monster = mon
-  #       gimme_picture_from_pokemon(pocket_monster)
-  #     puts " -> Name : #{pocket_monster.name}"
-  #     puts " -> Type: #{pocket_monster.type}"
-  #     puts " -> More Information: #{pocket_monster.more_info}"
-  # end  
+  def turning_out_pokemon(x)
+      pocket_monster = Pokemon::PokemonList.find_by_name(x)[0]
+      gimme_picture_from_pokemon(pocket_monster)
+      puts " -> Name : #{pocket_monster.name}"
+      puts " -> Type: #{pocket_monster.type}"
+      puts " -> More Information: #{pocket_monster.more_info}"
+  end  
 
   def reply_types
     Pokemon::PokemonList.all_types.each {|type| puts "-> #{type}"}
