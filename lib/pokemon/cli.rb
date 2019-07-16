@@ -147,8 +147,8 @@ class Pokemon::CLI
     puts "-> More Information : #{egg.more_info}"
   end  
 
-  def turning_out_pokemon(x)
-      pocket_monster = Pokemon::PokemonList.find_by_name(x)[0]
+  def turning_out_pokemon(name_choice)
+      pocket_monster = Pokemon::PokemonList.find_by_name(name_choice)[0]
       gimme_picture_from_pokemon(pocket_monster)
       puts " -> Name : #{pocket_monster.name}"
       puts " -> Type: #{pocket_monster.type}"
