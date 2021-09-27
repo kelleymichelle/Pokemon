@@ -10,4 +10,4 @@ gem "rmagick", "~> 2.16"
 
 gem "mini_magick", "~> 4.9"
 
-gem "nokogiri", "~> 1.10"
+gem "nokogiri", "~> 1.12"
